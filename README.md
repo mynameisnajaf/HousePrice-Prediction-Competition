@@ -1,2 +1,63 @@
-🏠House Price Prediction ProjectThis project aims to predict the SalePrice of residential homes using a variety of features describing aspects of the houses. The solution involves comprehensive feature engineering, data preprocessing, and an ensemble modeling approach.📊 Dataset OverviewThe notebook utilizes data from a Kaggle-style competition, specifically including:train.csv : The training set including the target SalePrice.test.csv : The test set for which prices must be predicted.data_description.txt : Full descriptions of each column.🛠️ Key Processing Steps1. Feature EngineeringThe notebook creates several composite features to better capture house value:TotalSF : Combined square footage of the basement and first/second floors.HouseAge : Years between the house being built and sold.RemodAge : Years between the last remodel and the sale date.TotalBath : A consolidated count of full and half bathrooms.2. Data PreprocessingLog Transformation : The target variable SalePriceis transformed using np.log1pto handle skewness.Missing Values ​​: Categorical missing values ​​are filled with "None," and numerical missing values ​​are filled with the median.Encoding : Categorical variables are converted to dummy variables (One-Hot Encoding).Scaling : Features are standardized using StandardScalerfor the linear model.🤖 Modeling ApproachThe final prediction is an ensemble of two different models to balance bias and variance:ModelConfiguration/HyperparametersPerformance (MAE)Ridge Regressionalpha=10.0913LightGBMn_estimators=2000,learning_rate=0.010.0870Ensemble Weighting: 
-The final submission is calculated as a weighted average of the two models:$$Final\ Prediction = (0.4 \times Ridge) + (0.6 \times LightGBM)$$🚀 UsageTo run this notebook, ensure you have the following libraries installed:numpypandasscikit-learnlightgbmThe notebook outputs a submission.csvcontaining the Idand the inverse-log transformed SalePrice.
+🏠 House Price Prediction Project
+
+This project focuses on predicting residential property sale prices using advanced data preprocessing, feature engineering, and an ensemble modeling approach. The solution is inspired by a Kaggle-style machine learning competition.
+
+📊 Dataset Overview
+
+The project uses the following datasets:
+
+train.csv – Training data including the target variable SalePrice
+test.csv – Test data for which predictions are generated
+data_description.txt – Detailed explanation of all features
+🛠️ Key Processing Steps
+1. Feature Engineering
+
+To improve model performance, several new features are created:
+
+TotalSF – Total square footage (basement + 1st + 2nd floor)
+HouseAge – Age of the house at the time of sale
+RemodAge – Time since last remodeling
+TotalBath – Combined number of bathrooms (full + half)
+2. Data Preprocessing
+Log Transformation
+The target variable SalePrice is transformed using log1p to reduce skewness.
+Handling Missing Values
+Categorical features → filled with "None"
+Numerical features → filled with median values
+Encoding
+Categorical variables are converted using One-Hot Encoding
+Scaling
+Numerical features are standardized using StandardScaler (mainly for linear models)
+🤖 Modeling Approach
+
+An ensemble model is used to balance bias and variance by combining two different algorithms:
+
+Models Used
+Model	Configuration	MAE
+Ridge Regression	alpha = 10.0	0.0913
+LightGBM	n_estimators = 2000, lr = 0.01	0.0870
+🔗 Ensemble Strategy
+
+Final predictions are computed as a weighted average:
+
+Final Prediction=(0.4×Ridge)+(0.6×LightGBM)
+🚀 Usage
+Requirements
+
+Make sure the following libraries are installed:
+
+pip install numpy pandas scikit-learn lightgbm
+Running the Project
+Place the dataset files (train.csv, test.csv) in the working directory
+Run the notebook or script
+The output will be:
+submission.csv
+📤 Output
+submission.csv
+Contains:
+Id
+Predicted SalePrice (inverse log-transformed)
+📌 Notes
+Feature engineering plays a critical role in improving prediction accuracy
+Ensemble learning helps combine strengths of both linear and tree-based models
+Log transformation significantly stabilizes variance and improves model performance
