@@ -73,18 +73,19 @@ Install the required libraries:
 
 ```bash
 pip install numpy pandas scikit-learn lightgbm
+```
 
-unning the Project
-Place the dataset files (train.csv, test.csv) in the working directory
-Run the notebook or script
-The output will be generated as:
-submission.csv
+Running the Project
+1. Place the dataset files (train.csv, test.csv) in the working directory
+2. Run the notebook or script
+3. The output will be generated as:
+  submission.csv
 
 📤 Output
-submission.csv
-Contains:
-Id
-Predicted SalePrice (inverse log-transformed)
+  submission.csv
+  Contains:
+    Id
+    Predicted SalePrice (inverse log-transformed)
 
 📌 Notes
 Feature engineering significantly improves prediction accuracy
